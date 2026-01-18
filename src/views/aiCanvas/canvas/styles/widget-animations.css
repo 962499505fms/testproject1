@@ -1,0 +1,393 @@
+/**
+ * Widget 加载动效样式
+ * 
+ * 包含：
+ * 1. Widget 进入动画
+ * 2. 骨架屏加载动画
+ * 3. 加载进度条动画
+ * 4. 错误状态样式
+ */
+
+/* ==================== Widget 进入动画 ==================== */
+
+/* 淡入 + 缩放 + 位移组合动画 */
+@keyframes widget-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Widget 进入动画类 */
+.widget-enter-active {
+  animation: widget-enter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 错开延迟效果 */
+.widget-enter-active:nth-child(1) {
+  animation-delay: 0ms;
+}
+
+.widget-enter-active:nth-child(2) {
+  animation-delay: 100ms;
+}
+
+.widget-enter-active:nth-child(3) {
+  animation-delay: 200ms;
+}
+
+.widget-enter-active:nth-child(4) {
+  animation-delay: 300ms;
+}
+
+.widget-enter-active:nth-child(5) {
+  animation-delay: 400ms;
+}
+
+/* ==================== 骨架屏加载动画 ==================== */
+
+/* 骨架屏容器 */
+.widget-skeleton {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* 骨架屏头部 */
+.widget-skeleton-header {
+  height: 60px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+/* 骨架屏内容 */
+.widget-skeleton-content {
+  padding: 20px;
+}
+
+.widget-skeleton-line {
+  height: 16px;
+  margin-bottom: 12px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 4px;
+}
+
+.widget-skeleton-line:nth-child(1) {
+  width: 80%;
+}
+
+.widget-skeleton-line:nth-child(2) {
+  width: 60%;
+}
+
+.widget-skeleton-line:nth-child(3) {
+  width: 90%;
+}
+
+.widget-skeleton-line:nth-child(4) {
+  width: 70%;
+}
+
+/* 骨架屏图表区域 */
+.widget-skeleton-chart {
+  height: 200px;
+  margin-top: 20px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 8px;
+}
+
+/* 骨架屏加载动画 */
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ==================== 加载进度条 ==================== */
+
+/* 进度条容器 */
+.widget-loading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(0, 0, 0, 0.05);
+  z-index: 9999;
+  overflow: hidden;
+}
+
+/* 进度条 */
+.widget-loading-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  transition: width 0.3s ease;
+  box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
+}
+
+/* 进度条动画（不确定进度时） */
+@keyframes progress-indeterminate {
+  0% {
+    left: -50%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.widget-loading-progress-bar.indeterminate {
+  width: 50%;
+  position: relative;
+  animation: progress-indeterminate 1.5s infinite;
+}
+
+/* ==================== 加载提示 ==================== */
+
+/* 加载提示容器 */
+.widget-loading-tip {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #fff;
+  padding: 16px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 9998;
+  animation: slide-in-right 0.3s ease;
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* 加载图标 */
+.widget-loading-icon {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #667eea;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 加载文本 */
+.widget-loading-text {
+  font-size: 14px;
+  color: #333;
+}
+
+.widget-loading-count {
+  font-weight: 600;
+  color: #667eea;
+}
+
+/* ==================== 错误状态 ==================== */
+
+/* 错误容器 */
+.widget-error {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+/* 错误图标 */
+.widget-error-icon {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 16px;
+  color: #f44336;
+  font-size: 64px;
+}
+
+/* 错误标题 */
+.widget-error-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+/* 错误消息 */
+.widget-error-message {
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+/* 重试按钮 */
+.widget-error-retry {
+  padding: 8px 16px;
+  background: #667eea;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+
+.widget-error-retry:hover {
+  background: #5568d3;
+}
+
+/* ==================== 空状态 ==================== */
+
+/* 空状态容器 */
+.widget-empty {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 40px 20px;
+}
+
+/* 空状态图标 */
+.widget-empty-icon {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+  opacity: 0.6;
+  font-size: 80px;
+  color: #ccc;
+}
+
+/* 空状态标题 */
+.widget-empty-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+/* 空状态描述 */
+.widget-empty-description {
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+}
+
+/* ==================== Hover 效果 ==================== */
+
+/* Widget 卡片 Hover 效果 */
+.vue-grid-item:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+/* ==================== 响应式 ==================== */
+
+@media (max-width: 768px) {
+  .widget-loading-tip {
+    top: 10px;
+    right: 10px;
+    padding: 12px 16px;
+  }
+  
+  .widget-loading-text {
+    font-size: 12px;
+  }
+  
+  .widget-empty {
+    padding: 30px 15px;
+  }
+  
+  .widget-empty-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 60px;
+  }
+  
+  .widget-empty-title {
+    font-size: 16px;
+  }
+  
+  .widget-empty-description {
+    font-size: 13px;
+  }
+}
+
+/* ==================== 打印样式 ==================== */
+
+@media print {
+  .widget-loading-progress,
+  .widget-loading-tip,
+  .widget-skeleton {
+    display: none !important;
+  }
+}
+
+/* ==================== 辅助类 ==================== */
+
+/* 淡入淡出 */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* 滑动进入 */
+.slide-enter-active {
+  transition: all 0.3s ease;
+}
+
+.slide-enter {
+  transform: translateY(-10px);
+  opacity: 0;
+}
+
+/* 缩放进入 */
+.scale-enter-active {
+  transition: all 0.3s ease;
+}
+
+.scale-enter {
+  transform: scale(0.9);
+  opacity: 0;
+}
