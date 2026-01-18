@@ -88,7 +88,7 @@ class A2UIProtocolHandler {
       componentName: widgetConfig.componentName,
       jsUrl: widgetConfig.jsUrl,
       configUrl: widgetConfig.configUrl,
-      data: widgetConfig.data || 
+      data: widgetConfig.data || {}
     };
     
     // 加载 Widget

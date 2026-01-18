@@ -12,7 +12,7 @@ export default {
         this.checkIfInIframe();
     },
     mounted() {
-        window.addEventlistener("storage", (e) => {
+        window.addEventListener("storage", (e) => {
             if (e.key === "themeId") {
                 window.location.reload();
             };

@@ -9,7 +9,7 @@ const IS_MOCK = process.env.IS_MOCK === "true";
 const isProduction = process.env.NODE_ENV === "production";
 
 function resolve(dir) {
-    return path.join(-_dirname, dir); //path.join( dirname)inmxtz
+    return path.join(__dirname, dir);
 }
 
 // 1et target = 'http://192.167.18.13:30000'
@@ -60,11 +60,11 @@ module.exports = {
                 pui: {
                     name: "chunk-pui",
                     test: /[\\/]libs[\\/]pui[\\/]/,
-                    chunks: "al1",
-                    maxInitialRequests: 5, priority: 1,
+                    chunks: "all",
+                    maxInitialRequests: 5,
+                    priority: 1,
                     reuseExistingChunk: true,
-                    enforce:
-                        true,
+                    enforce: true,
                 },
                 monacotditor: {
                     name: "monaco-editor",
@@ -138,10 +138,9 @@ module.exports = {
                 collapseInlineTagWhitespace: true,
                 collapseWhitespace: true,
                 minifyCSS: true,
-                removeAttributeOuotes: false,
+                removeAttributeQuotes: false,
                 removeComments: true,
                 removeEmptyAttributes: true,
-
                 removeRedundantAttributes: true,
                 useShortDoctype: true,
             };

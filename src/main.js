@@ -1,10 +1,13 @@
-import Vue from "vue"; import PUI from "pUI";
+import Vue from "vue";
+import PUI from "PUI";
 import * as echarts from "echarts";
-import i18n from "@/locale"; import router from "@/router";
-import store from "@/store"; import App from "@/App.vue";
+import i18n from "@/locale";
+import router from "@/router";
+import store from "@/store";
+import App from "@/App.vue";
 import HTTP from "@/service/apis";
 import Utils from "@/libs/utils";
-import { registerwidgets } from '@/libs/widgetlist';
+import { registerWidgets } from '@/libs/widgetlist';
 
 const isDev = process.env.NODE_ENV === "development";
 if (isDev) {
@@ -23,16 +26,16 @@ const prefixKey = "PLAT unified prefix";
 Vue.prototype.$Http = HTTP;
 Vue.prototype.$echarts = echarts;
 Vue.prototype.$utils = Utils;
-Vue.prototype.$theme = window.localstorage["themeId"] || "star";
-Vue.prototype.$lang = window.localstorage["language"] || "zh";
-Vue.prototype.$publicPath = window.localstorage[prefixKey] || '';
+Vue.prototype.$theme = window.localStorage["themeId"] || "star";
+Vue.prototype.$lang = window.localStorage["language"] || "zh";
+Vue.prototype.$publicPath = window.localStorage[prefixKey] || '';
 
 new Vue({
     router,
     i18n,
     store,
     render: h => h(App),
-    beforecreate() {
+    beforeCreate() {
         Vue.prototype.$bus = this;
     }
 }).$mount("#app");
